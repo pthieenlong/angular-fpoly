@@ -1,0 +1,77 @@
+<section>
+  <div
+    class="py-16 px-6 bg-position-center"
+    style="background-image: url('thumbnail/hero2.png')"
+  >
+    <section
+      class="max-w-screen-xl mx-auto flex flex-col lg:flex-row items-center justify-between"
+    >
+      <div class="max-w-xl text-center lg:text-left">
+        <h1
+          class="text-4xl md:text-5xl font-extrabold leading-tight text-gray-900"
+        >
+          FIND CLOTHES <br />
+          THAT MATCHES <br />
+          YOUR STYLE
+        </h1>
+        <p class="text-gray-600 mt-4">
+          Browse through our diverse range of meticulously crafted garments,
+          designed to bring out your individuality and cater to your sense of
+          style.
+        </p>
+        <button
+          class="mt-6 px-6 py-3 bg-black text-white font-semibold rounded-full hover:bg-gray-800"
+        >
+          Shop Now
+        </button>
+
+        <div
+          class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center lg:text-left"
+        >
+          <div>
+            <p class="text-xl font-bold text-gray-900">200+</p>
+            <p class="text-gray-600">International Brands</p>
+          </div>
+          <div>
+            <p class="text-xl font-bold text-gray-900">2,000+</p>
+            <p class="text-gray-600">High-Quality Products</p>
+          </div>
+          <div>
+            <p class="text-xl font-bold text-gray-900">30,000+</p>
+            <p class="text-gray-600">Happy Customers</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="bg-black w-full py-6">
+    <section
+      class="max-w-screen-xl mx-auto flex flex-col lg:flex-row items-center justify-between bg-black"
+    >
+      @for (brand of brands; track $index) {
+      <div class="">
+        <img src="{{ brand.url }}" alt="{{ brand.alt }}" />
+      </div>
+      }
+    </section>
+  </div>
+  <app-product [products]="newProducts" title="New Arrivals"></app-product>
+  <app-product [products]="bestProducts" title="Best Products"></app-product>
+  <div class="bg-gray-200 my-10 mx-auto w-[1280px] rounded-3xl">
+    <h1 class="text-[48px] uppercase font-extrabold text-center">
+      browse by dress style
+    </h1>
+    <div
+      class="[&_div]:h-[250px] [&_div]:w-full m-auto w-[1280px] grid grid-cols-3 grid-rows-2 gap-4 [&_div]:bg-no-repeat [&_div]:bg-center [&_div]:bg-cover px-16 py-8"
+    >
+      @for (category of categories; track $index) {
+      <div
+        class="w-full rounded-3xl px-5 py-10 text-black font-bold text-4xl"
+        style="background-image: url('{{ category.image }}');"
+      >
+        {{ category.title }}
+      </div>
+      }
+    </div>
+  </div>
+</section>

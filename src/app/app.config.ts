@@ -2,12 +2,32 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessC
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+
+import { provideIcons } from '@ng-icons/core';
+import {
+  heroMagnifyingGlass,
+  heroChevronDown,
+  heroShoppingCart,
+  heroUserCircle,
+  heroEnvelope,
+} from '@ng-icons/heroicons/outline';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
-    provideRouter(routes), provideClientHydration(withEventReplay())
+    provideRouter(routes),
+    provideIcons({
+      heroChevronDown,
+      heroMagnifyingGlass,
+      heroShoppingCart,
+      heroUserCircle,
+      heroEnvelope
+    }),
+    provideHttpClient(
+      withFetch(),
+    ),
   ]
 };

@@ -1,0 +1,44 @@
+<div class="max-w-[1280px] m-auto flex flex-col gap-5">
+  <h1 class="text-[48px] uppercase font-extrabold text-center">
+    {{ title }}
+  </h1>
+  <div class="flex justify-between items-center">
+    @for (product of products; track $index) {
+    <article class="flex items-center flex-col text-center">
+      <div class="overflow-hidden inline-block rounded-lg">
+        <img
+          src="http://localhost:3000/{{ product.images[0] }}"
+          alt="{{ product.slug }}"
+          class="w-[200px] h-[200px] hover:scale-125 transition-all"
+          crossorigin="anonymous"
+        />
+      </div>
+      <div class="">
+        <a href="/product/{{ product.slug }}" class="font-bold text-xl">
+          {{ product.name }}
+        </a>
+        <div class="flex items-center gap-5">
+          <!-- <Rating style={{ maxWidth: 120 }} value={rating} readOnly={true} /> -->
+          <span>{{ product.rating }}/5</span>
+        </div>
+        <div class="flex gap-3">
+          <p class="text-black font-bold text-xl">${{ product.price }}</p>
+          @if (product.isSale) {
+          <p class="line-through text-black opacity-40 font-bold text-xl">
+            ${{ product.salePrice }}
+          </p>
+          <p class="text-red-500 bg-red-300 rounded-4xl px-2 py-1">
+            -{{ product.salePercent * 100 }}%
+          </p>
+          }
+        </div>
+      </div>
+    </article>
+    }
+  </div>
+  <div
+    class="hover:bg-black hover:text-white transition-all font-bold py-4 px-14 rounded-4xl w-fit border border-black flex items-center text-center place-self-center"
+  >
+    <a href="/">View All</a>
+  </div>
+</div>
