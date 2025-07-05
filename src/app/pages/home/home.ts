@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Input } from '@angular/core';
 import { Product } from './components/product/product';
+import { API_URL } from '../../types/const';
+import { CommonModule, NgFor } from '@angular/common';
 @Component({
   selector: 'app-home',
-  imports: [Product],
+  imports: [Product, NgFor, CommonModule],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
@@ -62,23 +63,22 @@ export class Home {
   newProducts: any = [];
   constructor(private http: HttpClient) { }
   ngOnInit() {
-    this.http.get("http://localhost:3000/api/product/best").subscribe({
+    this.http.get(`${API_URL}/product/best`).subscribe({
       next: (data: any) => {
         this.bestProducts = data.data;
       },
-      error: (err) => {
+      error: (err: any) => {
         console.error('HTTP Error:', err);
       }
     });
-    this.http.get("http://localhost:3000/api/product/new").subscribe({
+    this.http.get(`${API_URL}/product/new`).subscribe({
       next: (data: any) => {
         this.newProducts = data.data;
       },
-      error: (err) => {
+      error: (err: any) => {
         console.error('HTTP Error:', err);
       }
     });
-    // this.http.get()
   }
   
 

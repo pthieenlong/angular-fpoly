@@ -55,8 +55,33 @@
       }
     </section>
   </div>
-  <app-product [products]="newProducts" title="New Arrivals"></app-product>
-  <app-product [products]="bestProducts" title="Best Products"></app-product>
+  <div class="max-w-[1280px] m-auto flex flex-col gap-5">
+    <h1 class="text-[48px] uppercase font-extrabold text-center">
+      New Arrivals
+    </h1>
+    <div class="flex justify-between items-center">
+      <app-product *ngFor="let product of newProducts" [product]=product></app-product>
+     
+    </div>
+    <div
+      class="hover:bg-black hover:text-white transition-all font-bold py-4 px-14 rounded-4xl w-fit border border-black flex items-center text-center place-self-center"
+    >
+      <a href="/">View All</a>
+    </div>
+  </div>
+  <div class="max-w-[1280px] m-auto flex flex-col gap-5">
+    <h1 class="text-[48px] uppercase font-extrabold text-center">
+      Best Products
+    </h1>
+    <div class="flex justify-between items-center">
+          <app-product *ngFor="let product of bestProducts" [product]=product></app-product>
+    </div>
+    <div
+      class="hover:bg-black hover:text-white transition-all font-bold py-4 px-14 rounded-4xl w-fit border border-black flex items-center text-center place-self-center"
+    >
+      <a href="/">View All</a>
+    </div>
+  </div>
   <div class="bg-gray-200 my-10 mx-auto w-[1280px] rounded-3xl">
     <h1 class="text-[48px] uppercase font-extrabold text-center">
       browse by dress style
