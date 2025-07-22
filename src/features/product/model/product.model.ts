@@ -1,16 +1,16 @@
 export interface IProduct {
-  id: string,
+  _id: string,
   name: string,
   slug: string,
   price: number,
-  images: string[],
+  images: string[];
   salePercent: number,
   isSale: boolean,
-  categories: string[],
+  category: string[],
   rating: number,
   colors: string[],
   sizes: string[],
   isVisible: boolean,
-  updatedAt: string,
-  createdAt: string
+  updatedAt: Date,
+  createdAt: Date
 }

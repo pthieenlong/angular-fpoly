@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Product } from './components/product/product';
-import { API_URL } from '../../types/const';
-import { CommonModule, NgFor } from '@angular/common';
+import { API_URL } from 'types/const';
+import { CommonModule } from '@angular/common';
+import { IProduct } from 'features/product';
 @Component({
   selector: 'app-home',
-  imports: [Product, NgFor, CommonModule],
+  standalone: true,
+  imports: [CommonModule, Product],
   templateUrl: './home.html',
-  styleUrl: './home.css'
 })
 export class Home {
   brands = [
@@ -59,13 +60,13 @@ export class Home {
       image: '/category/gym.png'
     },
   ];
-  bestProducts: any = [];
-  newProducts: any = [];
-  constructor(private http: HttpClient) { }
+  bestProducts = signal<IProduct[]>([]);
+  newProducts = signal<IProduct[]>([]);
+  constructor(private http: HttpClient) {  }
   ngOnInit() {
     this.http.get(`${API_URL}/product/best`).subscribe({
       next: (data: any) => {
-        this.bestProducts = data.data;
+        this.bestProducts.set(data.data);
       },
       error: (err: any) => {
         console.error('HTTP Error:', err);
@@ -73,13 +74,11 @@ export class Home {
     });
     this.http.get(`${API_URL}/product/new`).subscribe({
       next: (data: any) => {
-        this.newProducts = data.data;
+        this.newProducts.set(data.data);
       },
       error: (err: any) => {
         console.error('HTTP Error:', err);
       }
     });
   }
-  
-
 }

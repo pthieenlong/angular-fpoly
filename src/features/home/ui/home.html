@@ -49,9 +49,9 @@
       class="max-w-screen-xl mx-auto flex flex-col lg:flex-row items-center justify-between bg-black"
     >
       @for (brand of brands; track $index) {
-      <div class="">
-        <img src="{{ brand.url }}" alt="{{ brand.alt }}" />
-      </div>
+        <div class="">
+          <img src="{{ brand.url }}" alt="{{ brand.alt }}" />
+        </div>
       }
     </section>
   </div>
@@ -60,8 +60,9 @@
       New Arrivals
     </h1>
     <div class="flex justify-between items-center">
-      <app-product *ngFor="let product of newProducts" [product]=product></app-product>
-     
+    @for (product of newProducts(); track $index) {
+        <app-product [product]="product"></app-product>
+    }
     </div>
     <div
       class="hover:bg-black hover:text-white transition-all font-bold py-4 px-14 rounded-4xl w-fit border border-black flex items-center text-center place-self-center"
@@ -74,12 +75,14 @@
       Best Products
     </h1>
     <div class="flex justify-between items-center">
-          <app-product *ngFor="let product of bestProducts" [product]=product></app-product>
+      @for (product of bestProducts(); track $index) {
+          <app-product [product]="product"></app-product>
+      }
     </div>
     <div
       class="hover:bg-black hover:text-white transition-all font-bold py-4 px-14 rounded-4xl w-fit border border-black flex items-center text-center place-self-center"
     >
-      <a href="/">View All</a>
+      <a routerLink="/products">View All</a>
     </div>
   </div>
   <div class="bg-gray-200 my-10 mx-auto w-[1280px] rounded-3xl">
@@ -87,16 +90,12 @@
       browse by dress style
     </h1>
     <div
-      class="[&_div]:h-[250px] [&_div]:w-full m-auto w-[1280px] grid grid-cols-3 grid-rows-2 gap-4 [&_div]:bg-no-repeat [&_div]:bg-center [&_div]:bg-cover px-16 py-8"
+      class="[&_div]:h-[250px] [&_div]:w-full m-auto w-[1280px] grid grid-cols-3 grid-rows-2 gap-4 [&_div]:bg-no-repeat [&_div]:bg-center [&_div]:bg-cover px-16 py-8 [&_div]:rounded-3xl [&_div]:px-5 [&_div]:py-10 [&_div]:text-black [&_div]:font-bold [&_div]:text-4xl"
     >
-      @for (category of categories; track $index) {
-      <div
-        class="w-full rounded-3xl px-5 py-10 text-black font-bold text-4xl"
-        style="background-image: url('{{ category.image }}');"
-      >
-        {{ category.title }}
-      </div>
-      }
+      <div class="col-span-2" style="background-image: url('{{ categories[0].image }}');">{{ categories[0].title }}</div>
+      <div class="col-start-3" style="background-image: url('{{ categories[1].image }}');">{{ categories[1].title }}</div>
+      <div class="row-start-2" style="background-image: url('{{ categories[2].image }}');">{{ categories[2].title }}</div>
+      <div class="col-span-2 row-start-2" style="background-image: url('{{ categories[3].image }}');">{{ categories[3].title }}</div>
     </div>
   </div>
 </section>

@@ -4,6 +4,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 
 import { provideIcons } from '@ng-icons/core';
+
 import {
   heroMagnifyingGlass,
   heroChevronDown,

@@ -14,7 +14,28 @@
     "importHelpers": true,
     "target": "es2022",
     "module": "esnext",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "baseUrl": "./src",
+    "paths": {
+      "@app/*": [
+          "./src/app/*"
+      ],
+      "@features/*": [
+          "./src/features/*"
+      ],
+      "@shared/*": [
+          "./src/shared/*"
+      ],
+      "@core/*": [
+          "./src/core/*"
+      ],
+      "@assets/*": [
+          "./src/assets/*"
+      ],
+      "@types/*": [
+        "./src/types/*"
+      ]
+  },
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
