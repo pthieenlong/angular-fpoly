@@ -4,6 +4,7 @@ import { Header, Footer } from 'shared/ui';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet, Header, Footer],
   templateUrl: './app.html',
   styleUrl: './app.css'

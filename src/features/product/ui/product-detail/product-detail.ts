@@ -3,7 +3,6 @@ import { Component, Input, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IProduct } from 'features/product/model/product.model';
 import { API_URL } from 'types/const';
-
 @Component({
   selector: 'app-product-detail',
   imports: [],
@@ -11,7 +10,7 @@ import { API_URL } from 'types/const';
   styleUrl: './product-detail.css'
 })
 export class ProductDetail {
-  @Input() product = signal(undefined);
+  @Input() product = signal<IProduct | undefined>(undefined);
   readonly slug: string;
   private route = inject(ActivatedRoute);
   constructor(private http: HttpClient) {

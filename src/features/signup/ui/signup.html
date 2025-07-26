@@ -1,0 +1,74 @@
+<section class="max-w-[1280px] m-auto flex flex-col gap-6 my-4">
+  <form (ngSubmit)="onSubmit()" [formGroup]="registerForm" class="flex flex-col max-w-lg m-auto gap-4 items-center">
+    <h2 class="text-2xl font-bold text-center">Register</h2>
+
+    <!-- Username -->
+    <div class="flex flex-col gap-1 w-80">
+      <label for="username">Username:</label>
+      <input
+        type="text"
+        id="username"
+        placeholder="Enter your username..."
+        formControlName="username"
+        class="border rounded px-4 py-2 placeholder-gray-300"
+      />
+      <div *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.invalid" class="text-red-600 text-sm">
+        <div *ngIf="registerForm.get('username')?.errors?.['required']">Username is required.</div>
+        <div *ngIf="registerForm.get('username')?.errors?.['minlength']">Username must be at least 8 characters.</div>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="flex flex-col gap-1 w-80">
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        placeholder="Enter your email..."
+        formControlName="email"
+        class="border rounded px-4 py-2 placeholder-gray-300"
+      />
+      <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid" class="text-red-600 text-sm">
+        <div *ngIf="registerForm.get('email')?.errors?.['required']">Email is required.</div>
+        <div *ngIf="registerForm.get('email')?.errors?.['email']">Email is invalid.</div>
+      </div>
+    </div>
+
+    <!-- Password -->
+    <div class="flex flex-col gap-1 w-80">
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        placeholder="Enter your password..."
+        formControlName="password"
+        class="border rounded px-4 py-2 placeholder-gray-300"
+      />
+      <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid" class="text-red-600 text-sm">
+        <div *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</div>
+        <div *ngIf="registerForm.get('password')?.errors?.['pattern']">
+          Password must be at least 8 characters, including uppercase, lowercase, number and special character.
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="flex flex-col gap-1 w-80">
+      <label for="confirmPassword">Repeat Password:</label>
+      <input
+        type="password"
+        id="confirmPassword"
+        placeholder="Repeat your password"
+        formControlName="confirmPassword"
+        class="border rounded px-4 py-2 placeholder-gray-300"
+      />
+      <div *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.invalid" class="text-red-600 text-sm">
+        <div *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">Confirm password is required.</div>
+      </div>
+    </div>
+
+    <button type="submit" class="bg-black text-white px-4 py-2 flex items-center rounded-xl">
+      Register
+    </button>
+  </form>
+</section>
